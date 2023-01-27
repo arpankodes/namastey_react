@@ -1,0 +1,44 @@
+li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 16px;
+}
+
+.nav-items {
+    float: right;
+}
+
+.logo {
+    display: inline-block;
+    padding: 16px;
+}
+
+.search {
+    display: inline-block;
+}
+
+.filters {
+    float: right;
+    margin:0;
+}
+
+.res-card {
+    width: 20%;
+    margin: 16px;
+    padding: 1rem;
+    border: 2px solid black;
+}
+
+.serach-input {
+    /* display: inline-block; */
+    margin: 16px;
+}
+
+.search-btn {
+    /* display: inline-block; */
+    margin: 16px;
+}
+
+.res-image {
+    min-height: 160px;
+}
