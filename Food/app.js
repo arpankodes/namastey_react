@@ -1,4 +1,5 @@
 import ReactDOM from "react-dom/client";
+import { imgBaseUrl, restaurantCardData } from "./config";
 
 const Header = function () {
   return (
@@ -13,12 +14,36 @@ const Header = function () {
   );
 };
 
+const RestaurantCard = (props) => {
+  return (
+    <div className="res-card">
+      <img
+        className="res-image"
+        alt="Restaurant Image"
+        src={imgBaseUrl + props.imgId}
+      ></img>
+      <h3>{props.name}</h3>
+      <ul>
+        <li>{props.rating}</li>
+        <li>{props.time}</li>
+        <li>{props.cost}</li>
+      </ul>
+      {/* TODO: Implement Quick View */}
+    </div>
+  );
+};
+
 const RestaurantList = () => {
   return (
     <>
       <div className="list-header">
-          <input className="search-input" placeholder="Enter Restaurant Name"></input>
-          <button className="search-btn" type="button" >Search</button>
+        <input
+          className="search-input"
+          placeholder="Enter Restaurant Name"
+        ></input>
+        <button className="search-btn" type="button">
+          Search
+        </button>
 
         <ul className="filters">
           <li>Rating</li>
@@ -26,27 +51,21 @@ const RestaurantList = () => {
           <li>Cost</li>
         </ul>
       </div>
-      <div className="list-cont">
-        <RestaurantCard />
-      </div>
+      <div className="list-cont">{getRestaurantCards}</div>
     </>
   );
 };
 
-const RestaurantCard = () => {
-  return (
-    <div className="res-card">
-      <img className="res-image" alt="Restaurant Image"></img>
-      <h3>Name</h3>
-      <ul>
-        <li>Rating</li>
-        <li>Time</li>
-        <li>Cost</li>
-      </ul>
-      {/* TODO: Implement Quick View */}
-    </div>
-  );
-};
+const getRestaurantCards = restaurantCardData.map((res) => {
+  const restaurant = {
+    name: res.data.data.name,
+    rating: res.data.data.avgRating,
+    time: res.data.data.deliveryTime,
+    cost: res.data.data.costForTwoString,
+    imgId: res.data.data.cloudinaryImageId,
+  };
+  return <RestaurantCard {...restaurant} />;
+});
 
 const FoodApp = () => {
   return (
